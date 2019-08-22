@@ -25,6 +25,10 @@ class Instructor extends Person {
     grade(student, subject) {
         return `${student.newName} receives a perfect score on ${subject}`
     }
+    changeGrade(student) {
+        return student.newName + 's grade has been updated from ' + student.newGrade + ' to ' + Math.floor(Math.random() * (100-50) + 50);;
+    }
+    
 };
 
 //begin student class
@@ -34,6 +38,7 @@ class Student extends Person {
         this.newPrevBg = studentAttrs.previousBackground;
         this.newClassName = studentAttrs.className;
         this.newFavSubjects = studentAttrs.favSubjects;
+        this.newGrade = studentAttrs.grade;
     }
     listSubjects() {
         return `${this.newFavSubjects}`;
@@ -43,6 +48,9 @@ class Student extends Person {
     }
     sprintChallenge(subject) {
         return `${this.newName} has submitted a sprint challenge on ${subject}`
+    }
+    grade() {
+        return `${this.newName} has a current grade of ${this.newGrade}`
     }
 }
 
@@ -89,7 +97,8 @@ const dave = new Student({
     catchPhrase: "we don'`t need this",
     previousBackground: 'finance', 
     className: 'Web23',
-    favSubjects: ['computer science', 'mathematics', 'music']
+    favSubjects: ['computer science', 'mathematics', 'music'],
+    grade: 88
 })
 
 //test ProjectManager
@@ -101,7 +110,7 @@ const charles = new ProjectManager({
     favLanguage: 'JavaScript',
     catchPhrase: "What'`s yours will find you",
     gradClassName: 'CS1',
-    favInstructor: 'George'
+    favInstructor: 'George',
 })
 
 
@@ -115,3 +124,4 @@ console.log(dave.PRAssignment('computer science'));
 console.log(dave.listSubjects());
 console.log(charles.standup('web23'))
 console.log(charles.debugsCode(dave, 'Angular.js'));
+console.log(professor.changeGrade(dave));
