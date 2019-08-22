@@ -46,10 +46,22 @@ class Student extends Person {
     }
 }
 
+class ProjectManager extends Instructor {
+    constructor(pmAttrs) {
+        super(pmAttrs);
+        this.newGradClassName = pmAttrs.gradClassName;
+        this.favInstructor = pmAttrs.favInstructor;
+    }
+    standup(channel) {
+        return `${this.newName} announces to ${channel}, @channel standy times!​​​​​`
+    }
+    debugsCode(student, subject) {
+        return `${this.newName} debugs ${student.newName}'s code on ${subject}`
+    }
+}
 
 
-
-//Test Person class:
+//test Person
 const lorenzo = new Person({
     name: 'Lorenzo',
     age: 23,
@@ -57,8 +69,7 @@ const lorenzo = new Person({
 });
 
 
-//Test Instructor class: 
-
+//test Instructor
 const professor = new Instructor({
     name: 'Bob',
     age: 43,
@@ -68,8 +79,7 @@ const professor = new Instructor({
     catchPhrase: 'The best is yet to come'
 })
 
-
-
+//test Student
 const dave = new Student({
     name: 'Dave',
     age: 25,
@@ -81,6 +91,20 @@ const dave = new Student({
     className: 'Web23',
     favSubjects: ['computer science', 'mathematics', 'music']
 })
+
+//test ProjectManager
+const charles = new ProjectManager({
+    name: 'Charles',
+    age: 49,
+    location: 'Ardmore',
+    specialty: 'node.js',
+    favLanguage: 'JavaScript',
+    catchPhrase: "What'`s yours will find you",
+    gradClassName: 'CS1',
+    favInstructor: 'George'
+})
+
+
 //Tests//
 console.log(lorenzo.speak());
 console.log(professor.speak());
@@ -89,6 +113,5 @@ console.log(professor.grade(lorenzo, 'computer science'));
 console.log(dave.speak());
 console.log(dave.PRAssignment('computer science'));
 console.log(dave.listSubjects());
-
-
-//PMS EXTEND INSTRUCTORS
+console.log(charles.standup('web23'))
+console.log(charles.debugsCode(dave, 'Angular.js'));
